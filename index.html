@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PennLINC — White Matter Talks & Posters · OHBM 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f1a2e;
+      --paper: #f5f2ec;
+      --accent: #1a5c8a;
+      --accent-light: #cce3f2;
+      --gold: #c09b4e;
+      --muted: #6b7a8d;
+      --rule: #d6cfc4;
+      --tag-bg: #e8f4fd;
+      --tag-border: #a8d0ea;
+      --card-bg: #ffffff;
+      --shadow: 0 2px 12px rgba(15,26,46,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ── Masthead ── */
+    header {
+      background: var(--ink);
+      color: #fff;
+      padding: 60px 40px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(26,92,138,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 80% at 10% 80%, rgba(192,155,78,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--accent) 50%, var(--gold) 100%);
+    }
+
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .header-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      max-width: 560px;
+    }
+
+    /* ── Nav pills ── */
+    nav {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--rule);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 8px rgba(15,26,46,0.06);
+    }
+
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      gap: 0;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent-light);
+    }
+
+    /* ── Main layout ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 40px 80px;
+    }
+
+    section { margin-bottom: 64px; }
+
+    /* ── Section headings ── */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .section-subtitle {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+
+    /* ── Event block (talk / poster session) ── */
+    .event-block {
+      border-left: 3px solid var(--accent);
+      background: var(--card-bg);
+      border-radius: 0 10px 10px 0;
+      padding: 22px 28px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s;
+    }
+
+    .event-block:hover { box-shadow: 0 4px 20px rgba(15,26,46,0.13); }
+
+    .event-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .event-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .presenter {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .presenter .note {
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .paper-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.97rem;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .poster-num {
+      font-style: normal;
+    }
+
+    .poster-num {
+      display: inline-block;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: var(--accent);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 8px;
+      font-weight: 500;
+    }
+
+    /* ── Paper cards ── */
+    .papers-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .paper-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 28px 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--rule);
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 10px;
+    }
+
+    .paper-card:hover {
+      box-shadow: 0 6px 24px rgba(15,26,46,0.13);
+      transform: translateY(-2px);
+    }
+
+    .paper-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+      width: fit-content;
+      margin-bottom: 4px;
+    }
+
+    .badge-preprint {
+      background: #fdf3e3;
+      color: #9a6b1a;
+      border: 1px solid #f0d9a8;
+    }
+
+    .badge-journal {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #a5d6a7;
+    }
+
+    .paper-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+
+    .paper-authors {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .paper-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1.5px solid var(--accent-light);
+      border-radius: 6px;
+      width: fit-content;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .paper-link:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+    }
+
+    .paper-link svg { flex-shrink: 0; }
+
+    /* ── Tool cards ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) { .tools-grid { grid-template-columns: 1fr; } }
+
+    .tool-card {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 12px;
+      padding: 26px 28px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tool-card:hover {
+      box-shadow: 0 6px 28px rgba(15,26,46,0.25);
+      transform: translateY(-2px);
+    }
+
+    .tool-icon {
+      font-size: 1.6rem;
+      margin-bottom: 2px;
+    }
+
+    .tool-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .tool-card p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .tool-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      margin-top: 4px;
+      transition: opacity 0.15s;
+    }
+
+    .tool-link:hover { opacity: 0.75; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 32px 40px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Utilities ── */
+    .divider {
+      height: 1px;
+      background: var(--rule);
+      margin: 10px 0 24px;
+    }
+
+    @media (max-width: 640px) {
+      header, main, .nav-inner { padding-left: 20px; padding-right: 20px; }
+      nav a { padding: 14px 12px; font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="header-label">PennLINC &nbsp;·&nbsp; OHBM 2026</p>
+    <h1>PennLINC White Matter Roundup</h1>
+    <p class="header-desc">Papers, tools, and presentations highlighted in Audrey Luo's talk at OHBM 2026.</p>
+    <a href="mailto:audrey.luo@pennmedicine.upenn.edu" style="display:inline-block; margin-top:12px; font-size:0.88rem; color:rgba(255,255,255,0.55); text-decoration:none; font-family:'DM Mono',monospace; letter-spacing:0.03em;">audrey.luo@pennmedicine.upenn.edu</a>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#papers">Papers</a>
+    <a href="#talks">Talks</a>
+    <a href="#posters">Posters</a>
+    <a href="#tools">Tools</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── PAPERS ── -->
+  <section id="papers">
+    <h2 class="section-title">Papers</h2>
+    <p class="section-subtitle">Recent publications and preprints from the lab</p>
+
+    <div class="papers-grid">
+
+      <!-- Paper 0 — NEW: Luo et al. 2026 -->
+      <div class="paper-card">
+        <div>
+          <span class="paper-badge badge-journal">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2h6v6H2z" stroke="currentColor" stroke-linejoin="round"/><path d="M4 4h2" stroke="currentColor" stroke-linecap="round"/></svg>
+            Nature Communications · 2026
+          </span>
+          <h3>Two axes of white matter development</h3>
+        </div>
+        <p class="paper-authors">Luo et al., 2026</p>
+        <a class="paper-link" href="https://www.nature.com/articles/s41467-026-68714-8" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View in Nature Communications
+        </a>
+      </div>
+
+      <!-- Paper 1 -->
+      <div class="paper-card">
+        <div>
+          <span class="paper-badge badge-preprint">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M5 3v2.5l1.5 1" stroke="currentColor" stroke-linecap="round"/></svg>
+            bioRxiv Preprint · 2026
+          </span>
+          <h3>Highly replicable multisite patterns of adolescent white matter maturation</h3>
+        </div>
+        <p class="paper-authors">Meisler et al., 2026</p>
+        <a class="paper-link" href="https://www.biorxiv.org/content/10.64898/2026.04.18.719321v1.abstract" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View on bioRxiv
+        </a>
+      </div>
+
+      <!-- Paper 2 -->
+      <div class="paper-card">
+        <div>
+          <span class="paper-badge badge-journal">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2h6v6H2z" stroke="currentColor" stroke-linejoin="round"/><path d="M4 4h2" stroke="currentColor" stroke-linecap="round"/></svg>
+            Nature Neuroscience · 2025
+          </span>
+          <h3>Human thalamocortical structural connectivity develops in line with a hierarchical axis of cortical plasticity</h3>
+        </div>
+        <p class="paper-authors">Sydnor et al., 2025</p>
+        <a class="paper-link" href="https://www.nature.com/articles/s41593-025-01991-6" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View in Nature Neuroscience
+        </a>
+      </div>
+
+      <!-- Paper 3 -->
+      <div class="paper-card">
+        <div>
+          <span class="paper-badge badge-preprint">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="currentColor"/><path d="M5 3v2.5l1.5 1" stroke="currentColor" stroke-linecap="round"/></svg>
+            bioRxiv Preprint · 2025
+          </span>
+          <h3>Anatomical White Matter Tracts Span the Cortical Hierarchy to Support Cognitive Diversity</h3>
+        </div>
+        <p class="paper-authors">Bagautdinova et al., 2025</p>
+        <a class="paper-link" href="https://www.biorxiv.org/content/10.64898/2025.12.20.695692v1.abstract" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          View on bioRxiv
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── TALKS ── -->
+  <section id="talks">
+    <h2 class="section-title">Talks</h2>
+    <p class="section-subtitle">Symposium presentations at OHBM 2026</p>
+
+    <div class="event-block">
+      <div class="event-date">Wednesday, June 17</div>
+      <div class="event-time">15:00 – 16:15</div>
+      <div class="presenter">
+        Valerie Sydnor
+        <span class="note"> — Symposium: <em>More than a relay: examining the role of the thalamus in brain organisation, development, and disorder</em></span>
+      </div>
+      <div class="paper-title">Thalamocortical Connectivity Develops Along a Hierarchical Axis of Cortical Plasticity</div>
+    </div>
+  </section>
+
+  <!-- ── POSTERS ── -->
+  <section id="posters">
+    <h2 class="section-title">Posters</h2>
+    <p class="section-subtitle">Find us at these sessions · OHBM 2026</p>
+
+    <!-- Mon/Tue -->
+    <div class="event-block">
+      <div class="event-date">Monday June 15 &amp; Tuesday June 16</div>
+      <div class="presenter">Steven Meisler</div>
+      <div class="paper-title">
+        <span class="poster-num">#1624</span>
+        Highly replicable multisite patterns of adolescent white matter maturation
+      </div>
+    </div>
+
+    <!-- Wed/Thu -->
+    <div class="event-block">
+      <div class="event-date">Wednesday June 17 &amp; Thursday June 18</div>
+
+      <div class="presenter" style="margin-bottom:10px;">
+        Joëlle Bagautdinova <span class="note">(presented by Ted Satterthwaite)</span>
+      </div>
+      <div class="paper-title" style="margin-bottom:18px;">
+        <span class="poster-num">#2586</span>
+        Anatomical White Matter Tracts Span the Cortical Hierarchy to Support Cognitive Diversity
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="presenter" style="margin-bottom:10px;">Briana Macedo</div>
+      <div class="paper-title" style="margin-bottom:18px;">
+        <span class="poster-num">#2681</span>
+        White matter reflects the childhood environment
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="presenter" style="margin-bottom:10px;">Lucinda Sisk</div>
+      <div class="paper-title">
+        <span class="poster-num">#2643</span>
+        Trajectories of myelin maturation across adolescence: A longitudinal ABCD study
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TOOLS ── -->
+  <section id="tools">
+    <h2 class="section-title">Open-Source Tools</h2>
+    <p class="section-subtitle">Reproducible diffusion MRI processing pipelines</p>
+
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-icon">⚙️</div>
+        <h3>QSIPrep</h3>
+        <p>A BIDS-app for preprocessing of diffusion-weighted MRI data. Handles distortion correction, motion correction, eddy current correction, and more.</p>
+        <a class="tool-link" href="https://qsiprep.readthedocs.io/en/latest/" target="_blank" rel="noopener">
+          Read the docs →
+        </a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🔬</div>
+        <h3>QSIRecon</h3>
+        <p>Reconstruction of diffusion MRI data. Supports tractography, connectivity matrices, and a wide range of scalar maps for downstream analyses.</p>
+        <a class="tool-link" href="https://qsirecon.readthedocs.io/en/latest/" target="_blank" rel="noopener">
+          Read the docs →
+        </a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🧠</div>
+        <h3>pyAFQ</h3>
+        <p>Automated Fiber Quantification in Python. Delineates major white matter tracts and profiles tissue properties along their length.</p>
+        <a class="tool-link" href="https://tractometry.org/pyAFQ/" target="_blank" rel="noopener">
+          Read the docs →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Satterthwaite Lab &nbsp;·&nbsp; Penn Lifespan Informatics and Neuroimaging Center
+</footer>
+
+</body>
+</html>
